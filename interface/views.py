@@ -22,9 +22,6 @@ def register(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.full_clean():
-        if form.full_clean():
-        if form.full_clean():
-        if form.full_clean():
             form.save()
             user = authenticate(email=form['email'], password=['password'])
             if user:
