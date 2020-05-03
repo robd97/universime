@@ -1,0 +1,168 @@
+/* HOME PAGE */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .fa-search {
+    position: absolute;
+    z-index: 99;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #939393;
+}
+/* Split content */
+.grid-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 5px 10px 5px;
+    position:relative;
+    background: rgba(255, 255, 255, 0.28);
+    border-radius: 5px;
+    height: 490px;
+}
+/* START Sign Up Style */
+#sign-up {
+    text-align: left;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 300px;
+    padding: 16px 13px;
+    margin: 0 20px 0 20px ;
+    height: 470px;
+    place-self: center;
+}
+#sign-up:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.44);
+}
+#sign-up:first-child{
+    padding-top: 12px;
+    margin-top: 100pt;
+}
+#sign-up-btn{
+    display: block;
+}
+/* END Sign Up Style */
+#welcome{
+    margin: 20px;
+    align-self: center;
+}
+/* Login Card on nav */
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+    max-width: 120px;
+}
+
+.container {
+  padding: 16px;
+    max-width: 300px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 30px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 350px;
+    height: 100%;
+    max-height: 500px;
+
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+/* START Register */
+#register{
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 16px 13px;
+    margin: 0 20px 0 20px ;
+    height: 470px;
+    place-self: center;
+    max-width: 400px;
+}
+
