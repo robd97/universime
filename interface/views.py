@@ -4,9 +4,11 @@ from django.template import loader
 from forms import SignUpForm, SignInForm
 from django.contrib.auth import authenticate, login
 from interface.models import User
+from django.conf import settings
 
 
 def home(request):
+    #return HttpResponse(settings.MEDIA_ROOT)
     if request.user.is_authenticated:
         user = User.objects.get(email=request.user.email)
 
