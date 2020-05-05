@@ -27,6 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+]
+
 
 # Application definition
 
@@ -128,6 +135,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'interface.User'
+
+ENV_PATH = os.path.abspath(os.path.dirname(__file__))
+
+MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'static'),

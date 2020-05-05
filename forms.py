@@ -1,8 +1,26 @@
 from django import forms
-from django.forms.models import ModelForm
-from django.contrib.auth.models import User
 from django.core.validators import EmailValidator
-import datetime
+from interface.models import User, UserManager
+from django.forms import ModelForm
+from django import forms
+from datetime import datetime
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth import password_validation
+
+"""
+class SignUpForm(ModelForm):
+    class Meta:
+        model = User
+        password = forms.CharField(widget=forms.PasswordInput())
+        fields = ['first_name', 'last_name', 'email', 'password']
+        labels = {
+            'first_name': 'First Name',
+            'last_name': 'Last Name',
+            'email': 'E-mail',
+            'password': 'Password',
+        }
+
+"""
 
 
 class SignUpForm(forms.Form):
@@ -12,12 +30,12 @@ class SignUpForm(forms.Form):
     email = forms.EmailField(label='E-mail', validators=[EmailValidator])
     password = forms.CharField(widget=forms.PasswordInput(), label='Password')
     agree = forms.CharField(label='Agree with Terms', widget=forms.CheckboxInput())
-
+    """
     def clean_email(self):
         # TODO: Cross validate the data with data base and with standards.
         email = self.cleaned_data['email'].lower()
-        unq_email = User.objects.get(email=email)
-        if unq_email:
+
+        if User.objects.filter(email=email).first():
             forms.ValidationError(
                 "That e-mail is already in use.")
 
@@ -26,15 +44,18 @@ class SignUpForm(forms.Form):
         if first_name == '':
             forms.ValidationError(
                 "Invalid first name")
+        return True
+    """
 
     def save(self, commit=True):
-        User(
+        User.objects.create_user(
+            email=self.cleaned_data['email'],
             first_name=self.cleaned_data['first_name'],
             last_name=self.cleaned_data['last_name'],
-            email=self.cleaned_data['email'],
-            password=self.cleaned_data['password'],
-            date_joined= datetime.date
+            password=self.cleaned_data['password']
             ).save()
+
+
 
     # Sample forms.ValidationError()
     """

@@ -1,11 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.template import loader, RequestContext
+from django.template import loader
 from forms import SignUpForm, SignInForm
 from django.contrib.auth import authenticate, login
+from interface.models import User
 
 
 def home(request):
+    if request.user.is_authenticated:
+        user = User.objects.get(email=request.user.email)
+
     template = loader.get_template('startpage.html')
     # TODO: check if the user is logged in before showing sign up page.
 
@@ -14,6 +18,7 @@ def home(request):
         'bg_pic': 'pictures/home_bg_wp.jpg',
         'sign_up': SignUpForm,
         'sign_in': SignInForm,
+        'user': user,
     }
     return HttpResponse(template.render(context, request=request))
 
@@ -21,17 +26,21 @@ def home(request):
 def register(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
-        if form.full_clean():
+        if form.is_valid():
             form.save()
-            user = authenticate(email=form['email'], password=['password'])
-            if user:
+            user = authenticate(request,
+                            username= form.cleaned_data.get('email'),
+                            password= form.cleaned_data.get('password'))
+            if user is not None:
                 login(request, user)
+                return home(request)
             else:
                 # TODO: create login failed
                 return HttpResponse('User does not exist.')
 
         else:
             # TODO: invalid sign up credentials.
+
             return HttpResponse('Form is invalid')
 
     else:

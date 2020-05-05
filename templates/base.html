@@ -47,12 +47,18 @@
                     <input class="form-control mr-xl-2" type="search" placeholder="Search" aria-label="Search">
                 </div>
             </form>
+            {% if user %}
+            <img src="{{ user.profile_image.url }}"> {{ user.first_name }}
+            {% else %}
             <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-primary" style="border:none;color: black;"><b>Log In</b></button>
             <a href="{% url 'register' %}" class="btn btn-outline-primary" ><b>Sign Up</b></a>
+            {% endif %}
+
         </div>
     </nav>
 {% block content %}
 {% endblock %}
+    {% if user == None %}
     <div id="id01" class="modal">
       <form class="modal-content animate" action="{% url 'signin' %}" method="post">
         <div class="imgcontainer">
@@ -68,12 +74,12 @@
             <input type="checkbox" checked="checked" name="remember"> Remember me
           </label>
         </div>
-
         <div class="container" style="background-color:#f1f1f1">
           <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
           <span class="psw">Forgot <a href="#">password?</a></span>
         </div>
       </form>
     </div>
+    {% endif %}
 </body>
 </html>
