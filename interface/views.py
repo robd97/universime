@@ -1,16 +1,17 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from forms import SignUpForm, SignInForm
+from .forms import SignUpForm, SignInForm
 from django.contrib.auth import authenticate, login
 from interface.models import User
 from django.conf import settings
 
 
 def home(request):
-    #return HttpResponse(settings.MEDIA_ROOT)
     if request.user.is_authenticated:
         user = User.objects.get(email=request.user.email)
+        #return HttpResponse(settings.MEDIA_ROOT + user.profile_image.url)
+    else:
+        user = None
 
     template = loader.get_template('startpage.html')
     # TODO: check if the user is logged in before showing sign up page.

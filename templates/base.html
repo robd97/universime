@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font for brand title -->
+    <link href="https://fonts.googleapis.com/css2?family=Sansita:wght@700&display=swap" rel="stylesheet">
     <!-- BootStrap 4 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -20,10 +22,10 @@
     <title>{{ title }}</title>
 </head>
 <body>
-    <nav class="navbar sticky-top navbar-expand-lg" style="background: rgb(255,255,255) ;">
-        <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="{% static '/pictures/logo.png' %}" width="30" height="30" alt="UniversiME">
-            UniversiME
+    <nav class="navbar sticky-top navbar-expand-lg" style="background: rgb(255,255,255) ;align-self: center;">
+        <a class="navbar-brand" href="{% url 'home' %}" style="display: flex; align-items:center;">
+            <span style="font-family: 'Sansita';font-size: 22px;color: #000000">UniversiMe</span>
+            <img src="{% static '/pictures/logo.png' %}" width="30" height="30" alt="UniversiME" style="margin-left: 4px">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Hamburger_icon.svg">
@@ -47,9 +49,18 @@
                     <input class="form-control mr-xl-2" type="search" placeholder="Search" aria-label="Search">
                 </div>
             </form>
-            {% if user %}
-            <img src="{{ user.profile_image.url }}"> {{ user.first_name }}
-            {% else %}
+                {% if user %}
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <img src="{{ user.profile_image }}" height="30" width="30"> {{ user.first_name }}
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                {% else %}
             <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-outline-primary" style="border:none;color: black;"><b>Log In</b></button>
             <a href="{% url 'register' %}" class="btn btn-outline-primary" ><b>Sign Up</b></a>
             {% endif %}
